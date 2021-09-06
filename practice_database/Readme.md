@@ -28,9 +28,11 @@ docker run --rm -p 9999:80 -e 'PGADMIN_DEFAULT_EMAIL=admin@web.com' -e 'PGADMIN_
 ## Create database to learn
 
 - Create Server
+
 [![N|Solid](./images/02_create_sever.png)]
 
 - Fill information to connect to Postgresql
+
 [![N|Solid](./images/03_name_server.png)]
 
 [![N|Solid](./images/04_get_ip_by_docker_inspect.png)]
