@@ -28,13 +28,20 @@ docker inspect my_database | grep IP
 ## 6. Use pgadmin4 connect to postgres!
 
 ## Mount volumes my_database
+
+On Mac
 ```sh
 docker run -d --name my_database -p 5432:5432 -e POSTGRES_PASSWORD=trung123 -e PGDATA=/var/lib/postgresql/data/pgdata -v /Volumes/DATA/study/web_pet/learn_database/database_practise:/var/lib/postgresql/data postgres
 ```
 
+On Window
+```sh
+docker run -d --name my_database -p 5432:5432 -e POSTGRES_PASSWORD=trung123 -e PGDATA=/var/lib/postgresql/data/pgdata -v D:\datamac\study\web_pet\learn_database\database_practise:/var/lib/postgresql/data postgres
+```
+
+
 ## Note: port pgadmin4 80
 ```sh
-docker run --rm -p 9080:80 -e 'PGADMIN_DEFAULT_EMAIL=admin@web.com' \
-    -e 'PGADMIN_DEFAULT_PASSWORD=trung4321' -d dpage/pgadmin4
+docker run --rm -p 9080:80 -e 'PGADMIN_DEFAULT_EMAIL=admin@web.com' -e 'PGADMIN_DEFAULT_PASSWORD=trung4321' -d dpage/pgadmin4
 ```
 
