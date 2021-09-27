@@ -1,0 +1,34 @@
+version: "3.5"
+networks:
+  database-network:
+    name: db-network
+    driver: bridge
+
+services:
+  database:
+    hostname: hnpostgres
+    container_name: trung-db
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=trung123
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - D:\datamac\study\web_pet\learn_database\database_practise:/var/lib/postgresql/data
+    networks:
+      - database-network
+
+  database_tool:
+    hostname: hnpgadmin4
+    container_name: pgadmin4tool
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 9080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@web.com
+      - PGADMIN_DEFAULT_PASSWORD=trung123
+    networks:
+      - database-network
