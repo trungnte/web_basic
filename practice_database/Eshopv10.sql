@@ -3162,3 +3162,38 @@ INSERT INTO Products(Id, Name, UnitPrice, Image, ProductDate, Available, Categor
 INSERT INTO Products(Id, Name, UnitPrice, Image, ProductDate, Available, CategoryId, Quantity, Description, Discount, ViewCount, Special) VALUES (1077, N'Original Frankfurter grane Soae', 13, N'1077.gif', '2021/09/27', B'1', 1001, 13, N'EmEditor uses JavaScript or VBScript for its macro language, so those who are familiar with HTML or Windows scripting will be able to write macros with little difficulty. For those unfamiliar with scripting languages, EmEditor can record keystrokes, which can then be saved in a macro file that can easily be loaded in different situations. With the use of JavaScript or VBScript, you can also troubleshoot your code easily. For example, in JavaScript, you can use the following statement to troubleshoot errors', 0, 0, B'0');
 INSERT INTO Products(Id, Name, UnitPrice, Image, ProductDate, Available, CategoryId, Quantity, Description, Discount, ViewCount, Special) VALUES (1081, N'Chai', 19, N'1081.jpg', '2021/09/27', B'1', 1000, 19, N'EmEditor uses JavaScript or VBScript for its macro language, so those who are familiar with HTML or Windows scripting will be able to write macros with little difficulty. For those unfamiliar with scripting languages, EmEditor can record keystrokes, which can then be saved in a macro file that can easily be loaded in different situations. With the use of JavaScript or VBScript, you can also troubleshoot your code easily. For example, in JavaScript, you can use the following statement to troubleshoot errors', 0, 0, B'0');
 
+ALTER TABLE Customers ALTER COLUMN Photo SET DEFAULT N'Photo.gif';
+ALTER TABLE Customers ALTER COLUMN Activated SET DEFAULT B'0';
+ALTER TABLE Customers ALTER COLUMN Admin SET DEFAULT B'0';
+
+ALTER TABLE HitCounters ALTER COLUMN Count SET DEFAULT ((0));
+ALTER TABLE OrderDetails ALTER COLUMN UnitPrice SET DEFAULT ((0));
+ALTER TABLE OrderDetails ALTER COLUMN Quantity SET DEFAULT ((1));
+ALTER TABLE OrderDetails ALTER COLUMN Discount SET DEFAULT ((0));
+
+ALTER TABLE Orders ALTER COLUMN OrderDate SET DEFAULT (now());
+ALTER TABLE Orders ALTER COLUMN Amount SET DEFAULT ((0));
+
+
+ALTER TABLE Products ALTER COLUMN UnitPrice SET DEFAULT ((0));
+ALTER TABLE Products ALTER COLUMN Image SET DEFAULT (N'Product.gif');
+ALTER TABLE Products ALTER COLUMN ProductDate SET DEFAULT (now());
+ALTER TABLE Products ALTER COLUMN Available SET DEFAULT ((B'1'));
+ALTER TABLE Products ALTER COLUMN Quantity SET DEFAULT ((1));
+ALTER TABLE Products ALTER COLUMN Discount SET DEFAULT ((0));
+ALTER TABLE Products ALTER COLUMN ViewCount SET DEFAULT ((0));
+ALTER TABLE Products ALTER COLUMN Special SET DEFAULT ((B'0'));
+
+ALTER TABLE OrderDetails ADD CONSTRAINT FK_OrderDetails_Orders FOREIGN KEY(OrderId)
+	REFERENCES Orders (Id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE OrderDetails  ADD CONSTRAINT FK_OrderDetails_Products FOREIGN KEY(ProductId)
+	REFERENCES Products (Id) ON UPDATE CASCADE;
+
+ALTER TABLE Orders  ADD CONSTRAINT FK_Orders_Customers FOREIGN KEY(CustomerId)
+	REFERENCES Customers (Id) ON UPDATE CASCADE;
+
+ALTER TABLE Products  ADD CONSTRAINT FK_Products_Categories FOREIGN KEY(CategoryId)
+	REFERENCES Categories (Id) ON DELETE CASCADE;
+
+
