@@ -45,3 +45,29 @@ docker run -d --name my_database -p 5432:5432 -e POSTGRES_PASSWORD=trung123 -e P
 docker run --rm -p 9080:80 -e 'PGADMIN_DEFAULT_EMAIL=admin@web.com' -e 'PGADMIN_DEFAULT_PASSWORD=trung4321' -d dpage/pgadmin4
 ```
 
+## Connect to psql with docker
+
+Find the docker-container-id in which the postgres is running using the below command. 
+
+```sh
+docker ps -a
+```
+
+Run the below command to enter into the container (with the ID from step-1). 
+
+```sh
+docker exec -it <PSQL-Container-ID> bash
+```
+
+Authenticate to start using as postgres user. 
+
+```sh
+psql -h localhost -p 5432 -U postgres -W
+```
+
+Enter the password used while creating the PSQL server container.
+
+Basic command at PSQL
+\l : list database
+\connect or \c
+\c <database-name> :switch to 'database-name'

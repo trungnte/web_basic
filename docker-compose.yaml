@@ -16,7 +16,8 @@ services:
       - POSTGRES_PASSWORD=trung123
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - D:\datamac\study\web_pet\learn_database\database_practise:/var/lib/postgresql/data
+      # - D:\datamac\study\web_pet\learn_database\database_practise:/var/lib/postgresql/data
+      - /home/trung/work/mycode/database1:/var/lib/postgresql/data
     networks:
       - database-network
 
